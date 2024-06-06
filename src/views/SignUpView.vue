@@ -4,13 +4,14 @@
       <img src="@/assets/logo.png" alt="logo" />
     </div>
 
-    <form>
+    <form @submit="submit">
       <div class="form-item">
         <input
           type="text"
           id="name"
           name="name"
           placeholder="Name"
+          v-model="name"
           required>
       </div>
       <div class="form-item">
@@ -19,6 +20,7 @@
           id="email"
           name="email"
           placeholder="E-mail"
+          v-model="email"
           required>
       </div>
 
@@ -28,13 +30,14 @@
           id="phone"
           name="phone"
           placeholder="+00 (00) 00000-0000"
+          v-model="phone"
           required>
 
-        <input type="date">
+        <input type="date" v-model="date">
 
-        <select>
-          <option>Masculino</option>
-          <option>Feminino</option>
+        <select v-model="gender">
+          <option value="M">Masculino</option>
+          <option value="F">Feminino</option>
         </select>
       </div>
       <button type="submit">Cadastrar</button>
@@ -44,7 +47,40 @@
 </template>
 
 <script>
+import { signUpService } from '../services/authService.js'
 
+export default {
+  name: 'SignUpView',
+  data() {
+    return {
+      name: '',
+      email: '',
+      phone: '',
+      date: '',
+      gender: '',
+    };
+  },
+  methods: {
+    submit(event) {
+      event.preventDefault();
+      this.signUp({
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        date: this.date,
+        gender: this.gender
+      });
+    },
+    async signUp(data) {
+      const response = await signUpService(data);
+      if (response.status === 201) {
+        console.log('SUCCESS')
+      } else {
+        console.log('ERROR')
+      }
+    }
+  },
+}
 </script>
 
 <style scoped>
