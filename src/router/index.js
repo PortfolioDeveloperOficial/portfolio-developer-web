@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import SignConfirmView from '@/views/SignConfirmView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,8 @@ const router = createRouter({
     {
       path: '/sign-confirm',
       name: 'sign-confirm',
-      component: () => import('../views/SignConfirmView.vue')
+      component: SignConfirmView,
+      props: (route) => ({ email: route.query.email })
     },
     {
       path: '/about',

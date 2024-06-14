@@ -74,7 +74,7 @@ export default {
     async signUp(data) {
       const response = await signUpService(data);
       if (response.status === 201) {
-        this.$router.push({ name: 'sign-confirm' });
+        this.$router.push({ name: 'sign-confirm', query: { email: this.email }});
       } else {
         console.log('ERROR')
       }

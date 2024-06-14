@@ -23,6 +23,9 @@
 </template>
 
 <script>
+import { signConfirmService } from '@/services/authService.js'
+import { tokenStore } from '@/stores/token.js'
+
 export default {
   name: 'SignConfirmView',
   data() {
@@ -30,10 +33,29 @@ export default {
       code: '',
     }
   },
+  props: {
+    email: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     submit(event) {
       event.preventDefault()
-      console.log(this.code)
+      const data = {
+        email: this.email,
+        code: this.code
+      }
+      this.signConfirm(data);
+    },
+    async signConfirm(data) {
+      const response = await signConfirmService(data);
+      if (response.status === 200) {
+        const { accessToken } = response.data;
+        tokenStore().setToken(accessToken);
+      } else {
+        console.log('ERROR')
+      }
     }
   }
 }
