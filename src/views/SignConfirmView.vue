@@ -17,7 +17,7 @@
 
       <p class="code-send-description">Inserir código que você recebeu no e-mail</p>
 
-      <button type="submit" class="pd-submit-button">Cadastrar</button>
+      <button type="submit" class="pd-submit-button">Confirmar</button>
     </form>
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {
       if (response.status === 200) {
         const { accessToken } = response.data;
         tokenStore().setToken(accessToken);
+        this.$router.push({ name: 'home' });
       } else {
         console.log('ERROR')
       }

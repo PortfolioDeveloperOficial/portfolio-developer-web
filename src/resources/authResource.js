@@ -4,6 +4,10 @@ export const signUp = (data) => {
   return PORTFOLIO_DEVELOPER_API.post('/api/v1/sign-up', data);
 }
 
+export const signIn = (data) => {
+  return PORTFOLIO_DEVELOPER_API.post('/api/v1/sign-in', data);
+}
+
 export const signConfirm = (data) => {
   return PORTFOLIO_DEVELOPER_API.post('/api/v1/sign-confirm', data);
 }

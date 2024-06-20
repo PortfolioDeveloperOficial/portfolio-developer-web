@@ -41,7 +41,7 @@
         </select>
       </div>
       <button type="submit" class="pd-submit-button">Cadastrar</button>
-      <a>Eu já tenho um cadastro</a>
+      <router-link to="/sign-in">Eu já tenho um cadastro</router-link>
     </form>
   </div>
 </template>
