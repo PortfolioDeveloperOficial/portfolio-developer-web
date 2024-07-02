@@ -4,6 +4,11 @@ export const tokenStore = defineStore('token', {
   state: () => ({
     token: localStorage.getItem('accessToken') || ''
   }),
+  getters: {
+    isAuthenticated() {
+      return this.token !== ''
+    }
+  },
   actions: {
     setToken(token) {
       this.token = token

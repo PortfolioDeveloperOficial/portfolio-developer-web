@@ -12,6 +12,7 @@
 
 <script>
 import { developerRetrieveLogged } from '@/services/developerService.js'
+import { tokenStore } from '@/stores/token.js'
 
 export default {
   name: 'PageHeader',
@@ -21,9 +22,15 @@ export default {
     }
   },
   created() {
+    this.verifyIsLogged()
     this.getDeveloper()
   },
   methods: {
+    verifyIsLogged() {
+        if(!tokenStore().isAuthenticated) {
+          this.$router.push({ name: 'sign-in' })
+        }
+    },
     async getDeveloper() {
       const response = await developerRetrieveLogged()
       if (response.status === 200) {
