@@ -46,6 +46,7 @@ export default {
 <style scoped>
 header {
   display: flex;
+  height: 8vh;
   justify-content: space-between;
   padding: 10px 20px;
   border-bottom: 1px solid #2c3e50;

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pd-page-content">
     <div>CONTENT</div>
   </div>
 </template>
